@@ -1,0 +1,30 @@
+.chat-container{
+  width: 100%;
+  height: 100vh;
+
+}
+
+.chat-bot {
+  border: 1px solid;
+  padding: 5%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-messages{
+  padding: 2%;
+  max-width: 80%;
+}
+
+.bot-message {
+  background-color: red;
+  align-self: flex-start;
+  text-align: left;
+}
+.user-message {
+  background-color: blue;
+  align-self: flex-end;
+  text-align: right;
+}
