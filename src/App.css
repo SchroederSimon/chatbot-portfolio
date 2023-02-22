@@ -5,12 +5,16 @@
 }
 
 .chat-bot {
+  margin: auto;
   border: 1px solid;
   padding: 5%;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 50%;
+  height: 400px;
+  overflow-y: auto;
 }
 
 .chat-messages{
@@ -27,4 +31,24 @@
   background-color: blue;
   align-self: flex-end;
   text-align: right;
+}
+
+form {
+
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+form input{
+  border: solid 1px gray;
+  padding: 2%;
+  border-radius: 5px;
+  width: 40%;
+}
+form button{
+  padding: 2%;
+  background-color: blue;
+  border: none;
+  border-radius: 5px;
 }
