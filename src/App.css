@@ -52,3 +52,7 @@ form button{
   border: none;
   border-radius: 5px;
 }
+
+.button-loading{
+  background-color: blueviolet;
+}
