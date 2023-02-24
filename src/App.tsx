@@ -1,35 +1,14 @@
-
 import React, { useEffect, useRef, useState } from 'react';
+//style
 import './App.css'
+//data and interface
+import { ANSWERS, EXAMPLES } from './arrays/data';
+import { Message } from './interfaces/messageInterface';
+//dotenv
+import dotenv from 'dotenv';
+dotenv.config();
 
-type Message = {
-  id: string;
-  type: "bot" | "user";
-  text: React.ReactNode;
-}
 
-const ANSWERS = {
-  Introduction: (
-    <p>Soy simon</p>
-  ),
-  Experience: (
-    <p>Soy experience</p>
-  ),
-  Contact: (
-    <p>Soy Contact</p>
-  ),
-  Projects: (
-    <p>Soy Projects</p>
-  ),
-  Personal: (
-    <p>Soy Personal</p>
-  ),
-  Unknown: (
-    <p>Soy Unknown</p>
-  )
-}
-const EXAMPLES = [{ "text": "Hi", "label": "Introduction" }, { "text": "Who are you?", "label": "Introduction" }, { "text": "Want to work with you", "label": "Introduction" }, { "text": "Where are you from?", "label": "Introduction" }, { "text": "Are you looking a job?", "label": "Introduction" }, { "text": "Wich technology do you use?", "label": "Experience" }, { "text": "What languaje do you know?", "label": "Experience" }, { "text": "Where i can reach you?", "label": "Contact" }, { "text": "How is your LinkedIn profile?", "label": "Contact" }, { "text": "How is your GitHub profile?", "label": "Contact" }, { "text": "When you start programming?", "label": "Experience" }, { "text": "What inspired you to pursue a career in this field?", "label": "Experience" }, { "text": "Can you tell me what\'s your bigges project so far?", "label": "Projects" }, { "text": "What are your strenghts and weaknesses as a developer?", "label": "Personal" }, { "text": "dasdad", "label": "Unknown" }, { "text": "Do you have a resumee?", "label": "Contact" }, { "text": "Age of your cats", "label": "Unknown" }, { "text": "Weak and nesses", "label": "Personal" }, { "text": "Wich projects do you have?", "label": "Projects" }]
-const API_KEY = ""
 
 function App() {
 
@@ -47,10 +26,11 @@ function App() {
 
   async function handleSubmit(event: React.FormEvent) {
 
+    const apiKey = process.env.REACT_APP_API_KEY;
+
+
     event.preventDefault();
-
     if (loading) return;
-
     setLoading(true);
     setMessages((messages) =>
       messages.concat({ id: String(Date.now()), type: "user", text: question })
@@ -60,12 +40,12 @@ function App() {
     const { classifications } = await fetch("https://api.cohere.ai/classify", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         model: "large",
-        inputs: ["question"],
+        inputs: [question],
         examples: EXAMPLES,
       })
     }).then(res => res.json());
